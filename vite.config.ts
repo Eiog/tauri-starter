@@ -1,5 +1,5 @@
-import { defineConfig } from "vite";
-import vue from "@vitejs/plugin-vue";
+import { defineConfig } from 'vite';
+import vue from '@vitejs/plugin-vue';
 import { resolve } from 'path';
 import Unocss from 'unocss/vite';
 import VueSetupExtend from 'vite-plugin-vue-setup-extend';
@@ -7,7 +7,7 @@ import Components from 'unplugin-vue-components/vite';
 import { NaiveUiResolver } from 'unplugin-vue-components/resolvers';
 import AutoImport from 'unplugin-auto-import/vite';
 import Icons from 'unplugin-icons/vite';
-import vueI18n from '@intlify/vite-plugin-vue-i18n';
+import VueI18nPlugin from '@intlify/unplugin-vue-i18n/vite';
 import compressPlugin from 'vite-plugin-compression';
 // https://vitejs.dev/config/
 const vendorLibs: { match: string[]; output: string }[] = [
@@ -30,7 +30,9 @@ const configManualChunk = (id: string) => {
   }
 };
 export default defineConfig({
-  plugins: [vue(),VueSetupExtend(),
+  plugins: [
+    vue(),
+    VueSetupExtend(),
     AutoImport({
       /* options */
       include: [
@@ -74,9 +76,10 @@ export default defineConfig({
       ext: '.gz',
       deleteOriginFile: false,
     }),
-    vueI18n({
+    VueI18nPlugin({
       include: resolve(__dirname, './src/i18n/**'),
-    }),],
+    }),
+  ],
 
   // Vite options tailored for Tauri development and only applied in `tauri dev` or `tauri build`
   // prevent vite from obscuring rust errors
@@ -84,48 +87,48 @@ export default defineConfig({
   // tauri expects a fixed port, fail if that port is not available
   server: {
     port: 1420,
-      host: true, // host设置为true才可以使用network的形式，以ip访问项目
-      open: false, // 自动打开浏览器
-      cors: true, // 跨域设置允许
-      strictPort: true, // 如果端口已占用直接退出
-      proxy: {
-        '/api': {
-          target: 'https://mock.apifox.cn/m1/476417-0-default',
-          changeOrigin: true,
-          rewrite: (path) => path.replace(/^\/api/, ''),
-        },
+    host: true, // host设置为true才可以使用network的形式，以ip访问项目
+    open: false, // 自动打开浏览器
+    cors: true, // 跨域设置允许
+    strictPort: true, // 如果端口已占用直接退出
+    proxy: {
+      '/api': {
+        target: 'https://mock.apifox.cn/m1/476417-0-default',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, ''),
       },
+    },
   },
   // to make use of `TAURI_DEBUG` and other env variables
   // https://tauri.studio/v1/api/config#buildconfig.beforedevcommand
-  envPrefix: ["VITE_", "TAURI_"],
+  envPrefix: ['VITE_', 'TAURI_'],
   build: {
     // Tauri supports es2021
-    target: ["es2021", "chrome100", "safari13"],
+    target: ['es2021', 'chrome100', 'safari13'],
     // don't minify for debug builds
-    minify: !process.env.TAURI_DEBUG ? "esbuild" : false,
+    minify: !process.env.TAURI_DEBUG ? 'esbuild' : false,
     // produce sourcemaps for debug builds
     sourcemap: !!process.env.TAURI_DEBUG,
-      brotliSize: false,
-      // 消除打包大小超过500kb警告
-      chunkSizeWarningLimit: 2000,
-      // 在生产环境移除console.log
-      terserOptions: {
-        compress: {
-          drop_console: true,
-          drop_debugger: true,
-        },
+    brotliSize: false,
+    // 消除打包大小超过500kb警告
+    chunkSizeWarningLimit: 2000,
+    // 在生产环境移除console.log
+    terserOptions: {
+      compress: {
+        drop_console: true,
+        drop_debugger: true,
       },
-      assetsDir: 'static/assets',
-      // 静态资源打包到dist下的不同目录
-      rollupOptions: {
-        output: {
-          chunkFileNames: 'static/js/[name]-[hash].js',
-          entryFileNames: 'static/js/[name]-[hash].js',
-          assetFileNames: 'static/[ext]/[name]-[hash].[ext]',
-          manualChunks: configManualChunk,
-        },
+    },
+    assetsDir: 'static/assets',
+    // 静态资源打包到dist下的不同目录
+    rollupOptions: {
+      output: {
+        chunkFileNames: 'static/js/[name]-[hash].js',
+        entryFileNames: 'static/js/[name]-[hash].js',
+        assetFileNames: 'static/[ext]/[name]-[hash].[ext]',
+        manualChunks: configManualChunk,
       },
+    },
   },
   resolve: {
     alias: {
