@@ -7,7 +7,7 @@
     "withGlobalTauri": false
   },
   "package": {
-    "productName": "template-tauri",
+    "productName": "Tauri-TS-Starter",
     "version": "0.0.0"
   },
   "tauri": {
@@ -33,7 +33,7 @@
         "icons/icon.icns",
         "icons/icon.ico"
       ],
-      "identifier": "com.tauri.template",
+      "identifier": "com.tauri.starter",
       "longDescription": "",
       "macOS": {
         "entitlements": null,
