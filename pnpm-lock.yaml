@@ -4065,7 +4065,7 @@ packages:
     hasBin: true
     dependencies:
       caniuse-lite: registry.npmmirror.com/caniuse-lite/1.0.30001451
-      electron-to-chromium: registry.npmmirror.com/electron-to-chromium/1.4.291
+      electron-to-chromium: registry.npmmirror.com/electron-to-chromium/1.4.292
       node-releases: registry.npmmirror.com/node-releases/2.0.10
       update-browserslist-db: registry.npmmirror.com/update-browserslist-db/1.0.10_browserslist@4.21.5
     dev: true
@@ -4857,10 +4857,10 @@ packages:
       jake: registry.npmmirror.com/jake/10.8.5
     dev: true
 
-  registry.npmmirror.com/electron-to-chromium/1.4.291:
-    resolution: {integrity: sha512-8vk4rSMBh9LRfZKE6wcxOLmlfA4Xsa4v0RRwB6VJkAH703klC9XfZIocmTk2gLBzW31P6XbuNeMt1aB5aAu/2g==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/electron-to-chromium/-/electron-to-chromium-1.4.291.tgz}
+  registry.npmmirror.com/electron-to-chromium/1.4.292:
+    resolution: {integrity: sha512-ESWOSyJy5odDlE8wvh5NNAMORv4r6assPwIPGHEMWrWD0SONXcG/xT+9aD9CQyeRwyYDPo6dJT4Bbeg5uevVQQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/electron-to-chromium/-/electron-to-chromium-1.4.292.tgz}
     name: electron-to-chromium
-    version: 1.4.291
+    version: 1.4.292
     dev: true
 
   registry.npmmirror.com/emoji-regex/8.0.0:
